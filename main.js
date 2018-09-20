@@ -2,6 +2,8 @@ const { app, BrowserWindow,Menu,ipcMain } = require('electron');
 const url = require('url');
 const path = require('path');
 
+process.env.NODE_ENV = 'production';
+
 let mainWindow;
 let addWindow;
 

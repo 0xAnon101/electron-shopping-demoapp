@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Add Shopping List</title>
 </head>
 <body>
+    <div class="container">
     <form>
         <div>
             <label>Enter Items</label>
             <input type="text" id="item" autofocus>
         </div>
-        <button type="submit">Add Item</button>
+        <button class="btn waves-effect waves-light" type="submit">Add Item</button>
     </form>
+</div>
     <script>
         const { ipcRenderer } = require('electron');
 
