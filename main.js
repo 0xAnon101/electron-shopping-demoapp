@@ -1,4 +1,4 @@
-const { app, BrowserWindow,Menu } = require('electron');
+const { app, BrowserWindow,Menu,ipcMain } = require('electron');
 const url = require('url');
 const path = require('path');
 
@@ -43,6 +43,12 @@ function createAddWindow() {
     })
 }
 
+//catch item add 
+ipcMain.on('item:add',(e,item)=>{
+    mainWindow.webContents.send('item:add',item);
+    addWindow.close(); 
+});
+
 
 //create a menu template 
 const mainMenuTemplate =  [
@@ -56,7 +62,10 @@ const mainMenuTemplate =  [
                 }
             },
             {
-                label: 'Clear Item'
+                label: 'Clear Item',
+                click() {
+                    mainWindow.webContents.send('item:clear');
+                }
             },
             {
                 label: 'Quit',
@@ -89,6 +98,9 @@ if(process.env.NODE_ENV !== 'production') {
                 click(item,focusedWindow) {
                     focusedWindow.toggleDevTools();
                 }
+            },
+            {
+                role: 'reload' 
             }
         ]
     });
